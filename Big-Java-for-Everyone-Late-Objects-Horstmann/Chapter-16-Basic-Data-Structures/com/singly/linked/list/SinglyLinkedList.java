@@ -1,15 +1,13 @@
+package com.singly.linked.list;
+
 import java.util.NoSuchElementException;
 
 public class SinglyLinkedList {
     private Node first;
 
-    static class Node {
-        private Object data;
-        private Node next;
-
-        public Node(Object data, Node next) {
-            this.data = data;
-            this.next = next;
+    private void checkFirst() {
+        if (this.first == null) {
+            throw new NoSuchElementException();
         }
     }
 
@@ -18,28 +16,51 @@ public class SinglyLinkedList {
     }
 
     public Object getFirst() {
-        if (this.first == null) {
-            throw new NoSuchElementException();
-        }
+        this.checkFirst();
         return this.first.data;
     }
 
     public Object removeFirst() {
-        if (this.first == null) {
-            throw new NoSuchElementException();
-        }
-        Object data = this.first.data;
+        this.checkFirst();
+        Object element = this.first.data;
         this.first = this.first.next;
-        return data;
+        return element;
     }
 
-    public void addFirst(Object element) {
-        Node newNode = new Node(element, this.first);
+    public void addFirst(Object data) {
+        Node newNode = new Node(data, this.first);
         this.first = newNode;
+    }
+
+    public void addLast(Object data) {
+        if (this.first == null) {
+            this.addFirst(data);
+        } else {
+            Node last = this.first;
+            while (last.next != null) {
+                last = last.next;
+            }
+            Node newNode = new Node(data);
+            last.next = newNode;
+        }
     }
 
     public ListIterator listIterator() {
         return new SinglyLinkedListIterator();
+    }
+
+    class Node {
+        protected Object data;
+        protected Node next;
+
+        public Node(Object data) {
+            this.data = data;
+        }
+
+        public Node(Object data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
     }
 
     class SinglyLinkedListIterator implements ListIterator {
@@ -47,9 +68,15 @@ public class SinglyLinkedList {
         private Node previous;
         private boolean isAfterNext;
 
+        public SinglyLinkedListIterator() {
+            this.position = null;
+            this.position = null;
+            this.isAfterNext = false;
+        }
+
         @Override
         public boolean hasNext() {
-            if (this.position == null) {
+            if (!this.isAfterNext) {
                 return SinglyLinkedList.this.first != null;
             }
             return this.position.next != null;
@@ -104,6 +131,5 @@ public class SinglyLinkedList {
             }
             this.position.data = element;
         }
-
     }
 }

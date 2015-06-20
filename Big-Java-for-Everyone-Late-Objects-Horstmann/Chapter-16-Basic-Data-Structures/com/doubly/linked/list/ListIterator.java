@@ -1,8 +1,17 @@
+package com.doubly.linked.list;
 
 public interface ListIterator {
-    boolean hasNext();
     Object next();
+
+    Object previous();
+
+    boolean hasNext();
+
+    boolean hasPrevious();
+
     void add(Object element);
+
     void remove();
+
     void set(Object element);
 }
