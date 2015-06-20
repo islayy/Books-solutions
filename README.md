@@ -1,7 +1,16 @@
-Books-solutions
+Books-solutions :books:
 ===============
 
-Contains solved book exercises from various books. Only the most 'worthy' book exercises are included.
+Repo goal is to provide solutions for books that don't offer public ones.
+
+If you find this repo useful, feel free to :star: it. Lets make it popular!
+
+
+Contributions are welcome for:
+* Errors in the code
+* Code styling issues
+* Missing task solution
+
 
 ==============
 Currently included:
