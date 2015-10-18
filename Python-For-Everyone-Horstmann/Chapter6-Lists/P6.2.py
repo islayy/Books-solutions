@@ -7,7 +7,7 @@
 list = []
 
 print("Enter numbers: ")
-while len(list) < 11:
+while len(list) < 10:
     try:
         inputN = float(input())
         if inputN not in list:
